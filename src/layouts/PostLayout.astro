@@ -66,23 +66,19 @@ recent = recent
                             </ul>
                         </section>
                     )}
-                    {frontmatter.recent && (
-                        <section>
-                            <h6>Recent Posts</h6>
-                            {recent.map((post) => (
-                                <p>
-                                    <time datetime={post.frontmatter.date}>
-                                        {new Date(
-                                            post.frontmatter.date
-                                        ).toDateString()}
-                                    </time>
-                                    <a href={post.url}>
-                                        {post.frontmatter.title}
-                                    </a>
-                                </p>
-                            ))}
-                        </section>
-                    )}
+                    <section>
+                        <h6>Recent Posts</h6>
+                        {recent.map((post) => (
+                            <p>
+                                <time datetime={post.frontmatter.date}>
+                                    {new Date(
+                                        post.frontmatter.date
+                                    ).toDateString()}
+                                </time>
+                                <a href={post.url}>{post.frontmatter.title}</a>
+                            </p>
+                        ))}
+                    </section>
                 </aside>
             )
         }

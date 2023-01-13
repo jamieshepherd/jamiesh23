@@ -4,11 +4,18 @@ import mdx from '@astrojs/mdx';
 import embeds from 'astro-embed/integration';
 import compress from 'astro-compress';
 import sitemap from '@astrojs/sitemap';
+import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
-    site: 'https://jamie.sh',
     base: '/',
-    integrations: [react(), mdx(), embeds(), compress(), sitemap()],
+    integrations: [
+        react(),
+        mdx(),
+        embeds(),
+        compress(),
+        sitemap(),
+        robotsTxt(),
+    ],
     legacy: {
         astroFlavoredMarkdown: true,
     },
