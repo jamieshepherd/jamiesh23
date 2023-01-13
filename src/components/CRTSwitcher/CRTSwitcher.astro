@@ -27,7 +27,7 @@
         margin: 0;
 
         &:hover,
-        &[data-active='false'] {
+        [data-active='false'] {
             background-color: rgb(var(--primaryColor));
             color: rgb(var(--backgroundColor));
         }
@@ -40,17 +40,17 @@
     });
 
     // If the current local storage item can be found
-    let active = localStorage.hasOwnProperty('crt');
+    let disabled = localStorage.hasOwnProperty('crt-disabled');
     setRoot();
 
     // Function that will switch the theme based on the if the theme toggle is checked or not
     function switchCrt() {
-        active = !active;
+        disabled = !disabled;
 
-        if (active) {
-            localStorage.setItem('crt', 'active');
+        if (disabled) {
+            localStorage.setItem('crt-disabled', 'true');
         } else {
-            localStorage.removeItem('crt');
+            localStorage.removeItem('crt-disabled');
         }
 
         setRoot();
@@ -58,9 +58,9 @@
 
     function setRoot() {
         const root = document.getElementById('root');
-        root.className = active ? 'crt-active' : '';
+        root.className = disabled ? '' : 'crt-active';
 
         const crtSwitch = document.querySelector('button.crt_switch');
-        crtSwitch.dataset.active = active ? true : false;
+        crtSwitch.dataset.active = disabled ? false : true;
     }
 </script>
