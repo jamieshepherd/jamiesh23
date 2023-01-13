@@ -18,6 +18,11 @@
     &:hover, &:focus {
         background: rgba(var(--primaryColor), 0.04);
     }
+
+    
+    @media (max-width: 1000px) {
+        padding-right: 50px;
+    }
 }
 
 .cli_results {
@@ -28,6 +33,13 @@
     left: 0;
     right: 0;
     z-index: 1;
+    
+    @media (max-width: 1000px) {
+        position: fixed;
+        left: 30px;
+        right: 30px;
+        top: 70px;
+    }
 }
 
 .cli_result {
@@ -35,6 +47,9 @@
     display: flex;
     padding: 6px 20px;
     cursor: pointer;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &:hover {
         background: rgb(var(--primaryColor));
@@ -49,6 +64,10 @@
 
 .cli_result_date {
     margin-left: auto;
+
+    @media (max-width: 1000px) {
+        display: none;
+    }
 }
 
 .cli_result__active {

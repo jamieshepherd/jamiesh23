@@ -93,11 +93,21 @@ recent = recent
     main {
         display: flex;
         height: calc(100% - 40px);
+
+        @media (max-width: 1000px) {
+            flex-direction: column;
+            height: auto;
+            overflow-y: auto;
+        }
     }
     .article-container {
         padding: 30px;
         flex: 1;
         overflow-y: auto;
+
+        @media (max-width: 1000px) {
+            overflow-y: initial;
+        }
     }
     article {
         max-width: 1000px;
@@ -115,6 +125,13 @@ recent = recent
         width: 100%;
         flex: 1;
         overflow-y: auto;
+
+        @media (max-width: 1000px) {
+            border-top: 2px solid rgb(var(--primaryColor));
+            border-left: none;
+            overflow-y: initial;
+            max-width: 100%;
+        }
     }
     .tags {
         margin: -5px;
