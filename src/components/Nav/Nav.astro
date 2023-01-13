@@ -13,7 +13,10 @@ pages = pages.filter((page) => !page.frontmatter.draft);
     <CLI pages={pages} currentUrl={url} client:only="react" />
     <ThemePicker />
     <div class="btn_wrapper">
-        <a href="https://github.com/jamieshepherd/jamiesh23" class="btn_link"
+        <a
+            href="https://github.com/jamieshepherd/jamiesh23"
+            class="btn_link"
+            aria-label="Github Repository"
             ><svg
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
