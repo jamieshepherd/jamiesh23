@@ -22,6 +22,7 @@ function CLI({ currentUrl = '/', pages }) {
                 .sort((a, b) =>
                     b.frontmatter?.date?.localeCompare(a.frontmatter?.date)
                 )
+                .sort((a, b) => (a.url === '/' ? -1 : 1))
                 .slice(0, 10);
         }
 
