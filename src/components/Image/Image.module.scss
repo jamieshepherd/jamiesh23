@@ -1,0 +1,32 @@
+.image_wrapper {
+    border: 2px solid rgb(var(--bodyColor));
+    margin-bottom: 30px;
+}
+
+.image_link {
+    color: rgb(var(--bodyColor));
+
+    &:hover {
+        * {
+            border-color: rgb(var(--primaryColor));
+            color: rgb(var(--primaryColor));
+        }
+
+        figcaption {
+            background: rgb(var(--primaryColor));
+            color: rgb(var(--backgroundColor));
+        }
+    }
+}
+
+.image {
+
+}
+
+.caption {
+    border-top: 2px solid rgb(var(--bodyColor));
+    display: block;
+    padding: 10px;
+    font-size: 1.3rem;
+    text-align: center;
+}

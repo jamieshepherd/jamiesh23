@@ -1,0 +1,35 @@
+---
+import CLI from '@components/CLI/CLI';
+import ThemePicker from '@components/ThemePicker/ThemePicker.astro';
+const url = Astro.url.pathname;
+
+let pages = await Astro.glob('/**/*.mdx');
+pages = pages.filter((page) => !page.frontmatter.draft);
+---
+
+<nav>
+    <a class="logo" href="/">Jamie.sh</a>
+    <CLI pages={pages} currentUrl={url} client:only="react" />
+    <ThemePicker />
+</nav>
+<style lang="scss">
+    nav {
+        align-items: center;
+        border-bottom: 2px solid rgb(var(--primaryColor));
+        color: rgb(var(--primaryColor));
+        display: flex;
+        height: 40px;
+    }
+    .logo {
+        align-items: center;
+        background-color: rgb(var(--primaryColor));
+        color: rgb(var(--backgroundColor));
+        cursor: pointer;
+        display: flex;
+        padding: 0 16px;
+        text-transform: uppercase;
+        height: 40px;
+        outline: none;
+        text-decoration: none;
+    }
+</style>

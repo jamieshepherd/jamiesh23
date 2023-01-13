@@ -1,0 +1,54 @@
+.cli_wrapper {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    height: 100%;
+    position: relative;
+}
+
+.cli_input {
+    color: rgb(var(--primaryColor));
+    height: 100%;
+    padding: 0 20px;
+    background: none;
+    outline: none;
+    border: none;
+    width: 100%;
+
+    &:hover, &:focus {
+        background: rgba(var(--primaryColor), 0.04);
+    }
+}
+
+.cli_results {
+    background: rgba(var(--backgroundColor), 0.9);
+    border: 2px solid rgb(var(--primaryColor));
+    position: absolute;
+    top: 38px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.cli_result {
+    color: rgba(var(--primaryColor));
+    display: flex;
+    padding: 6px 20px;
+    cursor: pointer;
+
+    &:hover {
+        background: rgb(var(--primaryColor));
+        color: rgb(var(--backgroundColor));
+        text-decoration: underline;
+    }
+
+    &:last-of-type {
+        border-bottom: 0;
+    }
+}
+
+.cli_result__active {
+    background: rgb(var(--primaryColor));
+    color: rgb(var(--backgroundColor));
+    text-decoration: underline;
+}

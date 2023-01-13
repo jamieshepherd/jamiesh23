@@ -1,0 +1,9 @@
+# Redirects from what the browser requests to what we serve
+
+/posts/2020/06/01/a-rough-plan /gamedev/a-rough-plan
+/posts/2020/06/01/game-development-a-beginning /gamedev/game-development-a-beginning
+/posts/2020/06/01/games-that-shaped-me /gamedev/games-that-shaped-me
+/posts/2020/06/07/phase-discovery /gamedev/phase-discovery
+/posts/2020/06/16/unity-dots-nativearray-defaults /gamedev/unity-dots-nativearray-defaults
+/posts/2021/05/31/experimentation /gamedev/experimentation
+/posts/2022/08/29/wordpress-to-zola /webdev/wordpress-to-zola

@@ -1,0 +1,67 @@
+---
+---
+
+<div class="picker">
+    <button
+        class="theme_option"
+        style="background:rgb(var(--themeColorWhite))"
+        data-color="white"></button>
+    <button
+        class="theme_option"
+        style="background:rgb(var(--themeColorYellow))"
+        data-color="yellow"></button>
+    <button
+        class="theme_option"
+        style="background:rgb(var(--themeColorOrange))"
+        data-color="orange"></button>
+    <button
+        class="theme_option"
+        style="background:rgb(var(--themeColorCyan))"
+        data-color="cyan"></button>
+    <button
+        class="theme_option"
+        style="background:rgb(var(--themeColorGreen))"
+        data-color="green"></button>
+</div>
+<style lang="scss">
+    .picker {
+        align-items: center;
+        border-left: 2px solid rgb(var(--primaryColor));
+        display: flex;
+        height: 40px;
+        padding: 0 16px;
+        margin-left: auto;
+    }
+    .theme_option {
+        cursor: pointer;
+        width: 18px;
+        height: 18px;
+        margin-right: 5px;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+    }
+</style>
+
+<script>
+    const buttons = document.querySelectorAll('button.theme_option');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            switchTheme(button.dataset.color);
+        });
+    });
+
+    // If the current local storage item can be found
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        // Set the body data-theme attribute to match the local storage item
+        document.documentElement.setAttribute('data-theme', currentTheme);
+    }
+
+    // Function that will switch the theme based on the if the theme toggle is checked or not
+    function switchTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }
+</script>

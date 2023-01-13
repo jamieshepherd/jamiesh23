@@ -1,0 +1,41 @@
+---
+import Layout from '@layouts/Layout.astro';
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+    <main>
+        <div class="article-container">
+            <article>
+                <h1>{frontmatter.title}</h1>
+                <time datetime={frontmatter.date}
+                    >{new Date(frontmatter.date).toDateString()}</time
+                >
+                <slot />
+            </article>
+        </div>
+        <aside>Some stuff in here!!!!!!!!!!!</aside>
+    </main>
+</Layout>
+
+<style lang="scss">
+    main {
+        display: flex;
+        height: calc(100% - 40px);
+    }
+    .article-container {
+        padding: 30px;
+        flex: 1;
+        overflow-y: auto;
+    }
+    article {
+        max-width: 1000px;
+    }
+    aside {
+        border-left: 2px solid rgb(var(--primaryColor));
+        margin-left: auto;
+        min-width: 350px;
+        max-width: 400px;
+        width: 100%;
+    }
+</style>
