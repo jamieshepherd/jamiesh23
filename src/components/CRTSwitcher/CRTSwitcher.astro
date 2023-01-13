@@ -1,0 +1,66 @@
+---
+---
+
+<div class="switcher">
+    <button class="crt_switch">
+        <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+                d="M3 7h2v4h4V7h2v10H9v-4H5v4H3V7zm10 8V7h6v2h-4v6h4v2h-6v-2zm6 0V9h2v6h-2z"
+                fill="currentColor"></path>
+        </svg>
+    </button>
+</div>
+
+<style lang="scss">
+    .switcher {
+        border-left: 2px solid rgb(var(--primaryColor));
+    }
+    .crt_switch {
+        color: rgb(var(--bodyColor));
+        cursor: pointer;
+        background: none;
+        outline: none;
+        border: none;
+        width: 40px;
+        height: 40px;
+        padding: 0 8px;
+        margin: 0;
+
+        &:hover,
+        &[data-active='false'] {
+            background-color: rgb(var(--primaryColor));
+            color: rgb(var(--backgroundColor));
+        }
+    }
+</style>
+<script>
+    const button = document.querySelector('button.crt_switch');
+    button.addEventListener('click', () => {
+        switchCrt();
+    });
+
+    // If the current local storage item can be found
+    let active = localStorage.hasOwnProperty('crt');
+    setRoot();
+
+    // Function that will switch the theme based on the if the theme toggle is checked or not
+    function switchCrt() {
+        active = !active;
+
+        if (active) {
+            localStorage.setItem('crt', 'active');
+        } else {
+            localStorage.removeItem('crt');
+        }
+
+        setRoot();
+    }
+
+    function setRoot() {
+        const root = document.getElementById('root');
+        root.className = active ? 'crt-active' : '';
+
+        const crtSwitch = document.querySelector('button.crt_switch');
+        crtSwitch.dataset.active = active ? true : false;
+    }
+</script>

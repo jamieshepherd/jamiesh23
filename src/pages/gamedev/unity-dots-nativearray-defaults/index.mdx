@@ -2,6 +2,8 @@
 layout: '@layouts/PostLayout.astro'
 title: 'Unity DOTS NativeArray defaults'
 date: 2020-06-16T02:41:59+00:00
+tags: ['gamedev', 'unity', 'nativearray']
+links: [{ title: 'Unity', url: 'https://unity.com' }]
 ---
 
 I wanted to create a set of chunks in a grid along the X \+ Z axis in Unity (with the power of DOTS). To track which chunks I have already instantiated, I created a `NativeArray<float3>` named `chunkPositions`. I set the size of this array to my world size (width by height) and I have a job that loops through all of the positions on the screen, checking which exist in `chunkPositions`. If the position does not exist, I can create a new chunk there.

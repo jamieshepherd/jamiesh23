@@ -1,6 +1,16 @@
 ---
+import Tag from '@components/Tag/Tag.astro';
 import Layout from '@layouts/Layout.astro';
 const { frontmatter } = Astro.props;
+
+let recent = await Astro.glob('/**/*.mdx');
+recent = recent
+    .filter((p) => !p.frontmatter.draft && p.frontmatter.date)
+    .sort(
+        (a, b) =>
+            Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date)
+    )
+    .slice(0, 5);
 ---
 
 <Layout title={frontmatter.title}>
@@ -8,13 +18,74 @@ const { frontmatter } = Astro.props;
         <div class="article-container">
             <article>
                 <h1>{frontmatter.title}</h1>
-                <time datetime={frontmatter.date}
-                    >{new Date(frontmatter.date).toDateString()}</time
-                >
+                {
+                    frontmatter.date && (
+                        <time datetime={frontmatter.date}>
+                            {new Date(frontmatter.date).toDateString()}
+                        </time>
+                    )
+                }
+
                 <slot />
             </article>
         </div>
-        <aside>Some stuff in here!!!!!!!!!!!</aside>
+        {
+            (frontmatter.tags || frontmatter.sources || frontmatter.links) && (
+                <aside>
+                    {frontmatter.tags && (
+                        <section>
+                            <h6>Tags</h6>
+                            <div class="tags">
+                                {frontmatter.tags.map((tag) => (
+                                    <Tag>{tag}</Tag>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+                    {frontmatter.sources && (
+                        <section>
+                            <h6>Sources</h6>
+                            <ol>
+                                {frontmatter.sources.map((source) => (
+                                    <li>
+                                        <a href={source.url}>{source.title}</a>
+                                    </li>
+                                ))}
+                            </ol>
+                        </section>
+                    )}
+                    {frontmatter.links && (
+                        <section>
+                            <h6>Related Links</h6>
+                            <ul>
+                                {frontmatter.links.map((link) => (
+                                    <li>
+                                        <a href={link.url}>{link.title}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
+                    {frontmatter.recent && (
+                        <section>
+                            <h6>Recent Posts</h6>
+                            {recent.map((post) => (
+                                <p>
+                                    <time datetime={post.frontmatter.date}>
+                                        {new Date(
+                                            post.frontmatter.date
+                                        ).toDateString()}
+                                    </time>
+                                    <a href={post.url}>
+                                        {post.frontmatter.title}
+                                    </a>
+                                </p>
+                            ))}
+                        </section>
+                    )}
+                </aside>
+            )
+        }
     </main>
 </Layout>
 
@@ -30,6 +101,11 @@ const { frontmatter } = Astro.props;
     }
     article {
         max-width: 1000px;
+
+        time {
+            margin-top: -15px;
+            margin-bottom: 30px;
+        }
     }
     aside {
         border-left: 2px solid rgb(var(--primaryColor));
@@ -37,5 +113,27 @@ const { frontmatter } = Astro.props;
         min-width: 350px;
         max-width: 400px;
         width: 100%;
+        flex: 1;
+        overflow-y: auto;
+    }
+    .tags {
+        margin: -5px;
+    }
+    section {
+        border-bottom: 2px solid rgb(var(--primaryColor));
+        padding: 25px;
+
+        h6 {
+            margin-top: 0;
+        }
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 0;
+        }
     }
 </style>

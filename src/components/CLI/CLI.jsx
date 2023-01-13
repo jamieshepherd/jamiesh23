@@ -4,7 +4,7 @@ import { useDetectClickOutside } from 'react-detect-click-outside';
 
 import styles from './CLI.module.scss';
 
-function CLI({ currentUrl, pages }) {
+function CLI({ currentUrl = '/', pages }) {
     const inputRef = useRef();
     const [isOpen, setIsOpen] = useState(false);
     const [index, setIndex] = useState(0);
@@ -13,38 +13,45 @@ function CLI({ currentUrl, pages }) {
         onTriggered: () => setIsOpen(false),
     });
 
-    const urls = useMemo(
-        () =>
-            pages
-                .map((p) => p.url)
-                .concat(['/'])
-                .filter((url) => url.includes(query))
-                .sort((a, b) => a.localeCompare(b))
-                .slice(0, 10),
-        [pages, query]
-    );
+    const posts = useMemo(() => {
+        if (query === '' || query === '/') {
+            return pages
+                .map((p) => p)
+                .concat([{ url: '/', frontmatter: { date: '2023-01-01' } }])
+                .filter((p) => p.url.includes(query))
+                .sort((a, b) =>
+                    b.frontmatter?.date?.localeCompare(a.frontmatter?.date)
+                )
+                .slice(0, 10);
+        }
+
+        return pages
+            .map((p) => p)
+            .concat([{ url: '/', frontmatter: { date: '2023-01-01' } }])
+            .filter((p) => p.url.includes(query))
+            .sort((a, b) => a.url.localeCompare(b.url))
+            .slice(0, 10);
+    }, [pages, query]);
 
     useHotkeys(
         'up',
-        () => setIndex((prev) => (index > 0 ? prev - 1 : urls.length - 1)),
+        () => setIndex((prev) => (index > 0 ? prev - 1 : posts.length - 1)),
         { enableOnFormTags: true, preventDefault: true },
-        [index, urls]
+        [index, posts]
     );
     useHotkeys(
         'down',
-        () => setIndex((prev) => (index === urls.length - 1 ? 0 : prev + 1)),
+        () => setIndex((prev) => (index === posts.length - 1 ? 0 : prev + 1)),
         { enableOnFormTags: true, preventDefault: true },
-        [index, urls]
+        [index, posts]
     );
     useHotkeys(
         ['enter'],
         () => {
-            if (urls.length === 0) return;
-
-            console.log(urls[index]);
+            if (posts.length === 0) return;
 
             // send user to selected url
-            document.location.href = urls[index];
+            document.location.href = posts[index].url;
         },
         { enableOnFormTags: true, preventDefault: true },
         [index]
@@ -78,20 +85,31 @@ function CLI({ currentUrl, pages }) {
                 value={query}
                 onChange={(e) => setQuery(e.target?.value)}
             />
-            {isOpen && query !== '' && urls.length > 0 && (
-                <div className={styles.cli_results}>
-                    {urls.map((url, i) => (
-                        <a
-                            key={url}
-                            className={`${styles.cli_result} ${
-                                index === i && styles.cli_result__active
-                            }`}
-                            href={url}
-                        >
-                            {url}
-                        </a>
-                    ))}
-                </div>
+            {!isOpen && <button className={styles.hotkey}>/</button>}
+            {isOpen && query !== '' && posts.length > 0 && (
+                <>
+                    <button className={styles.hotkey}>ESC</button>
+                    <div className={styles.cli_results}>
+                        {posts.map((p, i) => (
+                            <a
+                                key={p.url}
+                                className={`${styles.cli_result} ${
+                                    index === i && styles.cli_result__active
+                                }`}
+                                href={p.url}
+                            >
+                                {p.url}
+                                {p.frontmatter && p.frontmatter.date && (
+                                    <span className={styles.cli_result_date}>
+                                        {new Date(
+                                            p.frontmatter.date
+                                        ).toLocaleDateString()}
+                                    </span>
+                                )}
+                            </a>
+                        ))}
+                    </div>
+                </>
             )}
         </div>
     );

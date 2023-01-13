@@ -47,8 +47,28 @@
     }
 }
 
+.cli_result_date {
+    margin-left: auto;
+}
+
 .cli_result__active {
     background: rgb(var(--primaryColor));
     color: rgb(var(--backgroundColor));
     text-decoration: underline;
+}
+
+.hotkey {
+    background: none;
+    outline: none;
+    color:rgb(var(--bodyColor));
+    border: 2px solid rgb(var(--bodyColor));
+    font-size: .8rem;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    right: 15px;
+    text-transform: uppercase;
 }

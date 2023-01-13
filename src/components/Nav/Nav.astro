@@ -1,5 +1,6 @@
 ---
 import CLI from '@components/CLI/CLI';
+import CRTSwitcher from '@components/CRTSwitcher/CRTSwitcher.astro';
 import ThemePicker from '@components/ThemePicker/ThemePicker.astro';
 const url = Astro.url.pathname;
 
@@ -11,6 +12,20 @@ pages = pages.filter((page) => !page.frontmatter.draft);
     <a class="logo" href="/">Jamie.sh</a>
     <CLI pages={pages} currentUrl={url} client:only="react" />
     <ThemePicker />
+    <div class="btn_wrapper">
+        <a href="https://github.com/jamieshepherd/jamiesh23" class="btn_link"
+            ><svg
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    d="M8 5h2v2H8V5zM6 7h2v2H6V7zM4 9h2v2H4V9zm-2 2h2v2H2v-2zm2 2h2v2H4v-2zm2 2h2v2H6v-2zm2 2h2v2H8v-2zm8-12h-2v2h2V5zm2 2h-2v2h2V7zm2 2h-2v2h2V9zm2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2zm-2 2h-2v2h2v-2z"
+                    fill="currentColor"></path>
+            </svg></a
+        >
+    </div>
+    <CRTSwitcher />
 </nav>
 <style lang="scss">
     nav {
@@ -31,5 +46,28 @@ pages = pages.filter((page) => !page.frontmatter.draft);
         height: 40px;
         outline: none;
         text-decoration: none;
+    }
+    .btn_wrapper {
+        border-left: 2px solid rgb(var(--primaryColor));
+    }
+    .btn_link {
+        align-items: center;
+        justify-content: center;
+        color: rgb(var(--bodyColor));
+        cursor: pointer;
+        background: none;
+        display: flex;
+        outline: none;
+        border: none;
+        width: 40px;
+        height: 40px;
+        padding: 0 8px;
+        margin: 0;
+
+        &:hover,
+        &[data-active='false'] {
+            background-color: rgb(var(--primaryColor));
+            color: rgb(var(--backgroundColor));
+        }
     }
 </style>
