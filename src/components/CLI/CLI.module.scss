@@ -36,9 +36,9 @@
     
     @media (max-width: 1000px) {
         position: fixed;
-        left: 30px;
-        right: 30px;
-        top: 70px;
+        left: 20px;
+        right: 20px;
+        top: 60px;
     }
 }
 
@@ -90,4 +90,8 @@
     position: absolute;
     right: 15px;
     text-transform: uppercase;
+
+    @media (max-width: 1000px) {
+        display: none;
+    }
 }
