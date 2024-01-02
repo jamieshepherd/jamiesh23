@@ -10,8 +10,8 @@ export default defineConfig({
     base: '/',
     integrations: [
         react(),
-        mdx(),
         embeds(),
+        mdx(),
         compress(),
         sitemap(),
         robotsTxt(),
