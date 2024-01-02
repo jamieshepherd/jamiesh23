@@ -1,7 +1,7 @@
 {
-  "name": "@example/basics",
+  "name": "jamiesh",
   "type": "module",
-  "version": "0.0.1",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -11,23 +11,23 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.14.0",
-    "@astrojs/react": "^1.2.2",
-    "@astrojs/sitemap": "^1.0.0",
-    "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.10",
-    "astro": "^1.9.0",
-    "astro-compress": "^1.1.25",
-    "astro-embed": "^0.2.0",
-    "astro-robots-txt": "^0.3.11",
+    "@astrojs/mdx": "^2.0.3",
+    "@astrojs/react": "^3.0.9",
+    "@astrojs/sitemap": "^3.0.4",
+    "@types/react": "^18.2.46",
+    "@types/react-dom": "^18.2.18",
+    "astro": "^4.0.9",
+    "astro-compress": "^2.2.5",
+    "astro-embed": "^0.6.1",
+    "astro-robots-txt": "^1.0.0",
     "react": "^18.2.0",
     "react-detect-click-outside": "^1.1.7",
     "react-dom": "^18.2.0",
-    "react-hotkeys-hook": "^4.3.2"
+    "react-hotkeys-hook": "^4.4.1"
   },
   "devDependencies": {
-    "prettier": "^2.8.2",
-    "prettier-plugin-astro": "^0.7.2",
-    "sass": "^1.57.1"
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.3",
+    "sass": "^1.69.6"
   }
 }
